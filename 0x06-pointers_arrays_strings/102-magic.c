@@ -1,5 +1,9 @@
 #include <stdio.h>
-
+/**
+ * main - Entry point
+ * Description: 'a dream doesnt become reality through magic'
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 	int n;
