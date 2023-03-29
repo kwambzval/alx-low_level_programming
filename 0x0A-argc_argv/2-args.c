@@ -6,7 +6,7 @@
  * @argv: array of arguments
  * Return: Always 0 (Success)
  */
-int main(int argc, char *argv[]);
+int main(int argc, char *argv[])
 {
 	int i;
 
@@ -16,3 +16,4 @@ int main(int argc, char *argv[]);
 	}
 	return (0);
 }
+
