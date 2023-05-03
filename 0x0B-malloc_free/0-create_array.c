@@ -1,8 +1,9 @@
 #include "main.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
- * create_array - creates an array chars and initializes it with char.
+ * create_array - creates array of chars and initializes it with char.
  *
  * @size: the size of the array to create.
  * @c: the char to initialize the array with.
@@ -16,16 +17,19 @@ char *create_array(unsigned int size, char c)
 	{
 		return (NULL);
 	}
+
 	char *array = malloc(size * sizeof(char));
 
 	if (array == NULL)
 	{
 		return (NULL);
 	}
+
 	for (unsigned int i = 0; i < size; i++)
 	{
 		array[i] = c;
 	}
+
 	return (array);
 }
 
