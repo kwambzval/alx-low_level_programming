@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <stdlib>
+#include <stdlib.h>
+#include "function_pointers.h"
 
 /**
  * main - prints the opcodes of its own main function
@@ -10,7 +11,7 @@
  * if bytes is negative
  */
 
-int main(int argc, int argv)
+int main(int argc, char *argv[])
 {
 	int i, n;
 
@@ -19,18 +20,17 @@ int main(int argc, int argv)
 		printf("Error\n");
 			return (1);
 	}
-
 	n = atoi(argv[1]);
-
 	if (n < 0)
 	{
 		printf("Error\n");
 		return (2);
 	}
 
-	for (i =0; i < n; i++)
+	for (i = 0; i < n; i++)
 	{
-		printf("%.2x",*((unsigned char *)main + i));
+		printf("%.2x", *((unsigned char *)main + i));
+
 		if (i == n - 1)
 			printf("\n");
 		else
