@@ -1,15 +1,17 @@
+#include "lists.h"
 #include <stdio.h>
 
 /**
- * pre_main_message - Prints a message before main function execution
+ * before_main - Function executed before main
  *
- * Description: This function prints a message to the standard output stream
- *              before the main function is executed.
- * Return: void
+ * Description: Prints the additional lines before the
+ * main function is executed
+ * void before_main(void) __attribute__((constructor));
  */
-void pre_main_message(void)
+
+void before_main(void)
 {
-	printf("You're beat! and yet, you must allow,\n"
-			"I bore my house upon my back!\n");
+	printf("You're beat! and yet, you must allow,\n");
+	printf("I bore my house upon my back!\n");
 }
 
