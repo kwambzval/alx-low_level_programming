@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+unsigned int multiply(unsigned int num1, unsigned int num2);
+int is_valid_number(char *str);
+
 /**
  * multiply - Multiplies two numbers
  * @num1: First number
@@ -40,21 +43,31 @@ int is_valid_number(char *str)
 int main(int argc, char *argv[])
 {
 	unsigned int num1, num2, result;
+	char command[100];
 
 	if (argc != 3)
 	{
 		printf("Error\n");
 		return (98);
 	}
+
 	if (!is_valid_number(argv[1]) || !is_valid_number(argv[2]))
 	{
 		printf("Error\n");
 		return (98);
 	}
+
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[2]);
 	result = multiply(num1, num2);
+
 	printf("%u\n", result);
+
+	/* Verify the result using bc */
+	sprintf(command, "echo '%u * %u' | bc", num1, num2);
+	printf("Verification: ");
+	fflush(stdout);
+	system(command);
 
 	return (0);
 }
