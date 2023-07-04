@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lists.h"
 /**
  * pop_listint - Removes the head node of a listint_t list and returns its data
  * @head: Double pointer to the head node of the list
