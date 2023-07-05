@@ -1,6 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
-
+#include <string.h>
 #include <stdlib.h>
 
 /**
@@ -46,6 +46,27 @@ char **strtow(char *str)
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
+	while (*str == ' ')
+		str++;
+	len = strlen(str);
+	while (len > 0 && str[len - 1] == ' ')
+		len--;
+	if (len == 0)
+	{
+		char **empty_arr = malloc(sizeof(char *));
+		if (empty_arr == NULL)
+			return (NULL);
+		empty_arr[0] = malloc(sizeof(char) * 14);
+
+		if (empty_arr[0] == NULL)
+		{
+			free(empty_arr);
+			return (NULL);
+		}
+		strcpy(empty_arr[0], "(0 chars long)");
+		return (empty_arr);
+	}
+
 	words = count_words(str);
 	arr = malloc(sizeof(char *) * (words + 1));
 	if (arr == NULL)
