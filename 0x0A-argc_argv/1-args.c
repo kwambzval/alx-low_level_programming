@@ -2,15 +2,15 @@
 
 /**
  * main - Entry point
- * @argc: Number of command-line arguments
- * @argv: Array of command-line arguments
- * Return: Always 0 (Success)
+ * @argc: Number of command line arguments
+ * @argv: Array of command line arguments
+ *
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
-	(void)argc;
-
-	printf("%s\n", argv[0]);
+	(void)argv;
+	printf("%d\n", argc - 1);
 
 	return (0);
 }
