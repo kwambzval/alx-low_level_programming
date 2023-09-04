@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+#include <string.h>
 
 #define BUFSIZE 1024
 
@@ -13,7 +14,13 @@
  */
 void exit_with_error(int exit_code, const char *message)
 {
-	dprintf(STDERR_FILENO, "%s\n", message);
+	ssize_t len = strlen(message);
+
+	if (write(STDERR_FILENO, message, len) !=
+			len || write(STDERR_FILENO, "\n", 1) != 1)
+	{
+		exit(100);
+	}
 	exit(exit_code);
 }
 
@@ -25,7 +32,8 @@ void exit_with_error(int exit_code, const char *message)
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to, bytes_read, bytes_written;
+	int fd_from, fd_to;
+	ssize_t bytes_read, bytes_written;
 	char buffer[BUFSIZE];
 
 	if (argc != 3)
@@ -36,7 +44,7 @@ int main(int argc, char *argv[])
 	if (fd_from == -1)
 		exit_with_error(98, "Error: Can't read from file");
 
-	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 
 	if (fd_to == -1)
 		exit_with_error(99, "Error: Can't write to file");
@@ -44,8 +52,7 @@ int main(int argc, char *argv[])
 	while ((bytes_read = read(fd_from, buffer, BUFSIZE)) > 0)
 	{
 		bytes_written = write(fd_to, buffer, bytes_read);
-
-		if (bytes_written == -1)
+		if (bytes_written == -1 || bytes_written != bytes_read)
 			exit_with_error(99, "Error: Can't write to file");
 	}
 
@@ -57,7 +64,6 @@ int main(int argc, char *argv[])
 
 	if (close(fd_to) == -1)
 		exit_with_error(100, "Error: Can't close fd");
-
 	return (0);
 }
 
