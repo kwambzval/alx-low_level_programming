@@ -20,7 +20,7 @@ void error_usage(void)
  */
 void error_read(char *file)
 {
-	dprintf(1, "Error: Can't read from file %s\n", file);
+	dprintf(2, "Error: Can't read from file %s\n", file);
 	exit(98);
 }
 
