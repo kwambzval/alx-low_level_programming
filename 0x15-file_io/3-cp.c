@@ -9,7 +9,7 @@
  */
 void error_usage(void)
 {
-	dprintf(2, "Usage: cp file_from file_to\n");
+	dprintf(1, "Usage: cp file_from file_to\n");
 	exit(97);
 }
 
@@ -20,7 +20,7 @@ void error_usage(void)
  */
 void error_read(char *file)
 {
-	dprintf(2, "Error: Can't read from file %s\n", file);
+	dprintf(1, "Error: Can't read from file %s\n", file);
 	exit(98);
 }
 
@@ -31,7 +31,7 @@ void error_read(char *file)
  */
 void error_write(char *file)
 {
-	dprintf(2, "Error: Can't write to %s\n", file);
+	dprintf(1, "Error: Can't write to %s\n", file);
 	exit(99);
 }
 
@@ -43,7 +43,7 @@ void error_write(char *file)
  */
 void error_close(int fd)
 {
-	dprintf(2, "Error: Can't close fd %d\n", fd);
+	dprintf(1, "Error: Can't close fd %d\n", fd);
 	exit(100);
 }
 
