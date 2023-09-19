@@ -31,7 +31,7 @@ void error_read(char *file)
  */
 void error_write(char *file)
 {
-	dprintf(1, "Error: Can't write to %s\n", file);
+	dprintf(2, "Error: Can't write to %s\n", file);
 	exit(99);
 }
 
