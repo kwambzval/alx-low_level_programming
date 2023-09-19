@@ -63,25 +63,36 @@ int main(int argc, char *argv[])
 
 	file_from = open(argv[1], O_RDONLY);
 	if (file_from == -1)
-		error_read(argv[1]);
-
+	{
+		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 	file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (file_to == -1)
-		error_write(argv[2]);
-
+	{
+		dprintf(2, "Error: Can't write to file %s\n", argv[2]);
+		exit(99);
+	}
 	while ((read_result = read(file_from, buffer, 1024)) > 0)
 	{
 		write_result = write(file_to, buffer, read_result);
 		if (write_result == -1)
-			error_write(argv[2]);
+		{
+			dprintf(2, "Error: Can't write to file %s\n", argv[2]);
+			exit(99);
+		}
+	}
+	if (read_result == -1)
+	{
+		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
 	}
 
-	if (read_result == -1)
-		error_read(argv[1]);
-
 	if (close(file_from) == -1 || close(file_to) == -1)
-		error_close((close(file_from) == -1) ? file_from : file_to);
-
+	{
+	error_close((close(file_from) == -1) ? file_from : file_to);
+		exit(100);
+	}
 	return (0);
 }
 
