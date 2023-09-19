@@ -9,7 +9,7 @@
  */
 void error_usage(void)
 {
-	dprintf(1, "Usage: cp file_from file_to\n");
+	dprintf(2, "Usage: cp file_from file_to\n");
 	exit(97);
 }
 
@@ -43,7 +43,7 @@ void error_write(char *file)
  */
 void error_close(int fd)
 {
-	dprintf(1, "Error: Can't close fd %d\n", fd);
+	dprintf(2, "Error: Can't close fd %d\n", fd);
 	exit(100);
 }
 
