@@ -7,6 +7,7 @@
 void print_number(int n)
 {
 	unsigned int num;
+	unsigned int divisor = 1;
 
 	if (n < 0)
 	{
@@ -17,8 +18,6 @@ void print_number(int n)
 	{
 		num = n;
 	}
-
-	unsigned int divisor = 1;
 
 	while (num / divisor >= 10)
 	{
